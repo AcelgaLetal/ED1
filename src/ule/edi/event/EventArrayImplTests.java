@@ -233,6 +233,7 @@ public class EventArrayImplTests {
 		Person personTry = new Person("Alex", "73489228D", 70);
 		Person personTry2 = new Person("Olvia", "73489228D",20);
 		
+		
 		Assert.assertEquals(true, ep.sellSeat(1, personTry, Configuration.Type.GOLD));
 		Assert.assertEquals(false, ep.sellSeat(1, personTry2, Configuration.Type.GOLD));
 		
@@ -241,6 +242,15 @@ public class EventArrayImplTests {
 		
 		Assert.assertEquals(true, ep.sellSeat(1, personTry3, Configuration.Type.SILVER));
 		Assert.assertEquals(false, ep.sellSeat(1, personTry4, Configuration.Type.SILVER));
+		
+		Person personTry5 = new Person("Julio", "73208228D",80);
+		Person personTry6 = new Person("Mariola", "7348299628D",12);
+		
+		Assert.assertEquals(false, ep.sellSeat(0, personTry5, Configuration.Type.GOLD));
+		Assert.assertEquals(false, ep.sellSeat(5, personTry6, Configuration.Type.GOLD));
+		
+		Assert.assertEquals(false, ep.sellSeat(0, personTry5, Configuration.Type.SILVER));
+		Assert.assertEquals(false, ep.sellSeat(8, personTry6, Configuration.Type.SILVER));
 	}
 	
 	@Test
@@ -252,6 +262,12 @@ public class EventArrayImplTests {
 		Person personTry2 = new Person("Olvia", "73489228D",20);
 		Seat seatTry = new Seat(ep, 1, Configuration.Type.GOLD, personTry);
 		Seat seatTry2 = new Seat(ep, 1, Configuration.Type.SILVER, personTry2);
+		
+		Assert.assertEquals(null, ep.getSeat(0, Configuration.Type.GOLD));
+		Assert.assertEquals(null, ep.getSeat(5, Configuration.Type.GOLD));
+		
+		Assert.assertEquals(null, ep.getSeat(0, Configuration.Type.SILVER));
+		Assert.assertEquals(null, ep.getSeat(8, Configuration.Type.SILVER));
 		
 		Assert.assertEquals(null, ep.getSeat(1, Configuration.Type.GOLD));
 		Assert.assertEquals(null, ep.getSeat(1, Configuration.Type.SILVER));
@@ -279,6 +295,12 @@ public class EventArrayImplTests {
 		ep.sellSeat(1, personTry2, Configuration.Type.SILVER);
 		
 		Assert.assertEquals(personTry2, ep.refundSeat(1, Configuration.Type.SILVER));
+		
+		Assert.assertEquals(null,ep.refundSeat(0, Configuration.Type.GOLD));
+		Assert.assertEquals(null,ep.refundSeat(5, Configuration.Type.GOLD));
+		
+		Assert.assertEquals(null,ep.refundSeat(0, Configuration.Type.SILVER));
+		Assert.assertEquals(null,ep.refundSeat(8, Configuration.Type.SILVER));
 	}
 	
 	

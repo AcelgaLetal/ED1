@@ -270,26 +270,45 @@ public class EventArrayImpl implements Event {
 	{
 		// TODO Auto-generated method stub
 		
+		if(pos < 1)
+		{
+			return null;
+		}
+		
 		if (type == Configuration.Type.GOLD)
 		{
-			if (gold[pos - 1] == null)
+			if (pos > nGold)
 			{
 				return null;
 			}
 			else
 			{
-				return gold[pos - 1];
+				if (gold[pos - 1] == null)
+				{
+					return null;
+				}
+				else
+				{
+					return gold[pos - 1];
+				}
 			}
 		}
 		else
 		{
-			if (silver[pos - 1] == null)
+			if (pos > nSilver)
 			{
 				return null;
 			}
 			else
 			{
-				return silver[pos - 1];
+				if (silver[pos - 1] == null)
+				{
+					return null;
+				}
+				else
+				{
+					return silver[pos - 1];
+				}
 			}
 		}
 	}
@@ -300,33 +319,52 @@ public class EventArrayImpl implements Event {
 		// TODO Auto-generated method stub
 		
 		Person aux = null;
+		
+		if (pos < 1)
+		{
+			return null;
+		}
 	
 		if (type == Configuration.Type.GOLD)
 		{
-			if (gold[pos - 1] == null)
+			if (pos > nGold)
 			{
 				return null;
 			}
 			else
 			{
-				aux = gold[pos - 1].getHolder();
-				gold[pos - 1] = null;
-				
-				return aux;
+				if (gold[pos - 1] == null)
+				{
+					return null;
+				}
+				else
+				{
+					aux = gold[pos - 1].getHolder();
+					gold[pos - 1] = null;
+					
+					return aux;
+				}
 			}
 		}
 		else
 		{
-			if (silver[pos - 1] == null)
+			if (pos > nSilver)
 			{
 				return null;
 			}
 			else
 			{
-				aux = silver[pos - 1].getHolder();
-				silver[pos - 1] = null;
-				
-				return aux;
+				if (silver[pos - 1] == null)
+				{
+					return null;
+				}
+				else
+				{
+					aux = silver[pos - 1].getHolder();
+					silver[pos - 1] = null;
+					
+					return aux;
+				}
 			}
 		}	
 	}
@@ -336,32 +374,51 @@ public class EventArrayImpl implements Event {
 	public boolean sellSeat(int pos, Person p, Type type) {
 		// TODO Auto-generated method stub
 		
+		if(pos < 1)
+		{
+			return false;
+		}
+		
 		if (type == Configuration.Type.GOLD)
 		{
-			if (gold[pos - 1] != null)
+			if (pos > nGold)
 			{
 				return false;
 			}
 			else
 			{
-				Seat sitioNuevo = new Seat(this, pos, type, p);
-				gold[pos - 1] = sitioNuevo;
-				
-				return true;
+				if (gold[pos - 1] != null)
+				{
+					return false;
+				}
+				else
+				{
+					Seat sitioNuevo = new Seat(this, pos, type, p);
+					gold[pos - 1] = sitioNuevo;
+					
+					return true;
+				}
 			}
 		}
 		else
 		{
-			if (silver[pos - 1] != null)
+			if (pos > nSilver)
 			{
 				return false;
 			}
 			else
 			{
-				Seat sitioNuevo = new Seat(this, pos, type, p);
-				silver[pos - 1] = sitioNuevo;
-				
-				return true;
+				if (silver[pos - 1] != null)
+				{
+					return false;
+				}
+				else
+				{
+					Seat sitioNuevo = new Seat(this, pos, type, p);
+					silver[pos - 1] = sitioNuevo;
+					
+					return true;
+				}
 			}
 		}
 	}
