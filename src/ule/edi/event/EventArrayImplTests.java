@@ -37,7 +37,7 @@ public class EventArrayImplTests {
 	public void testSomething() throws Exception {
 		
 	    Assert.assertTrue(e.getNumberOfAvailableSeats()==110);
-	    Assert.assertEquals(e.getNumberOfSilverSeats(), 110);
+	    Assert.assertEquals(e.getNumberOfSilverSeats(), 100);
 	    Assert.assertEquals(e.getNumberOfAttendingAdults(), 0);
 	}
 	
@@ -307,16 +307,13 @@ public class EventArrayImplTests {
 	@Test
 	public void testGetAvailableGoldSeatsList() throws Exception
 	{
-		Event ep = new EventArrayImpl("Testing", parseLocalDate("17/02/2019 11:07:00"), 8, 6);
+		Event ep = new EventArrayImpl("Testing", parseLocalDate("17/02/2019 11:07:00"), 3, 6);
 		
 		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(2);
 		list.add(3);
-		list.add(4);
-		list.add(5);
-		list.add(6);
-		list.add(7);
-		list.add(8);
-		list.add(9);
+	
 		
 		Person personTry = new Person("Alex", "73489228D", 70);
 		Person personTry2 = new Person("Olvia", "73489228D",20);
@@ -324,22 +321,18 @@ public class EventArrayImplTests {
 		ep.sellSeat(1, personTry, Configuration.Type.GOLD);
 		ep.sellSeat(2, personTry2, Configuration.Type.GOLD);
 		
-		Assert.assertEquals(list, ep.getAvailableGoldSeatsList());
+		Assert.assertEquals(ep.getAvailableGoldSeatsList().toString(), "[3]");
 	}
 	
 	@Test
 	public void testGetAvailableSilverSeatsList() throws Exception
 	{
-		Event ep = new EventArrayImpl("Testing", parseLocalDate("17/02/2019 11:07:00"), 8, 8);
+		Event ep = new EventArrayImpl("Testing", parseLocalDate("17/02/2019 11:07:00"), 8, 3);
 		
 		List<Integer> list = new ArrayList<>();
+		list.add(1);
+		list.add(2);
 		list.add(3);
-		list.add(4);
-		list.add(5);
-		list.add(6);
-		list.add(7);
-		list.add(8);
-		list.add(9);
 		
 		Person personTry = new Person("Alex", "73489228D", 70);
 		Person personTry2 = new Person("Olvia", "73489228D",20);
@@ -347,7 +340,7 @@ public class EventArrayImplTests {
 		ep.sellSeat(1, personTry, Configuration.Type.SILVER);
 		ep.sellSeat(2, personTry2, Configuration.Type.SILVER);
 		
-		Assert.assertEquals(list, ep.getAvailableGoldSeatsList());
+		Assert.assertEquals(ep.getAvailableSilverSeatsList().toString(), "[3]");
 	}
 	
 	@Test

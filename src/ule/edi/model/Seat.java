@@ -46,4 +46,22 @@ public class Seat {
 		this.type = type;
 	}
 	
+	public boolean equals(Object obj)
+	{
+		Seat seatAux;
+		seatAux = (Seat) obj;
+		
+		if(this.type == seatAux.getType())
+		{
+			if(this.position == seatAux.getPosition())
+			{
+				if(this.holder.equals(seatAux.getHolder()))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
 }
